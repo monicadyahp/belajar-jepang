@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react'; // useEffect dihapus
 import { kanaData } from './data';
 import type { Kana } from './data';
 
