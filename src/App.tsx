@@ -1,4 +1,4 @@
-import { useState } from 'react'; // useEffect dihapus
+import { useState } from 'react';
 import { kanaData } from './data';
 import type { Kana } from './data';
 
@@ -13,9 +13,6 @@ function App() {
   const [showAnswer, setShowAnswer] = useState(false);
   const [feedback, setFeedback] = useState('');
 
-  // Filter data berdasarkan pilihan user
-  const filteredData = kanaData.filter(k => k.type === selectedType);
-
   const startSession = (mode: Mode, type: KanaType) => {
     setSelectedType(type);
     setView(mode);
@@ -29,7 +26,6 @@ function App() {
     setShowAnswer(false);
     setFeedback('');
 
-    // Generate pilihan acak untuk Quiz
     const wrongOptions = data
       .filter(k => k.romaji !== correct.romaji)
       .sort(() => 0.5 - Math.random())
@@ -68,9 +64,7 @@ function App() {
     <div style={styles.container}>
       <div style={styles.card}>
         <button onClick={() => setView('menu')} style={styles.backBtn}>← Kembali</button>
-        
         <div style={styles.kanaDisplay}>{currentKana.char}</div>
-
         {view === 'flashcard' ? (
           <div>
             {showAnswer ? (
@@ -87,7 +81,7 @@ function App() {
                 <button key={opt} style={styles.optionBtn} onClick={() => checkAnswer(opt)}>{opt}</button>
               ))}
             </div>
-            <p style={{marginTop: '20px', color: feedback.includes('✅') ? 'green' : 'red'}}>{feedback}</p>
+            <p style={{marginTop: '20px', color: feedback.includes('✅') ? '#81c784' : '#e57373'}}>{feedback}</p>
           </div>
         )}
       </div>
@@ -96,17 +90,17 @@ function App() {
 }
 
 const styles: { [key: string]: React.CSSProperties } = {
-  container: { backgroundColor: '#ebf4ff', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' },
+  container: { backgroundColor: '#ebf4ff', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', fontFamily: 'sans-serif' },
   card: { backgroundColor: 'white', width: '100%', maxWidth: '400px', borderRadius: '24px', padding: '30px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', textAlign: 'center' },
   title: { color: '#5da9e9', marginBottom: '30px' },
   menuGrid: { display: 'flex', flexDirection: 'column', gap: '10px' },
   menuBtn: { padding: '15px', borderRadius: '12px', border: 'none', backgroundColor: '#e1effe', color: '#3b82f6', fontWeight: 'bold', cursor: 'pointer' },
   quizBtn: { padding: '15px', borderRadius: '12px', border: 'none', backgroundColor: '#5da9e9', color: 'white', fontWeight: 'bold', cursor: 'pointer' },
-  kanaDisplay: { fontSize: '100px', margin: '20px 0', fontWeight: 'bold' },
+  kanaDisplay: { fontSize: '100px', margin: '20px 0', fontWeight: 'bold', color: '#333' },
   optionGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' },
   optionBtn: { padding: '15px', borderRadius: '8px', border: '2px solid #e1effe', backgroundColor: 'white', cursor: 'pointer', fontSize: '18px' },
   button: { padding: '12px 24px', borderRadius: '12px', border: 'none', backgroundColor: '#5da9e9', color: 'white', cursor: 'pointer' },
-  backBtn: { background: 'none', border: 'none', color: '#999', cursor: 'pointer', float: 'left' },
+  backBtn: { background: 'none', border: 'none', color: '#999', cursor: 'pointer', float: 'left', fontSize: '14px' },
   skipButton: { display: 'block', margin: '20px auto', background: 'none', border: 'none', color: '#5da9e9', textDecoration: 'underline', cursor: 'pointer' }
 };
 
