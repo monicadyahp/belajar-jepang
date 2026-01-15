@@ -6,7 +6,8 @@ export interface Kana {
 }
 
 export const kanaData: Kana[] = [
-  // HIRAGANA SEION
+  // --- HIRAGANA ---
+  // Basic (Seion) 
   { char: 'あ', romaji: 'a', type: 'hiragana' }, { char: 'い', romaji: 'i', type: 'hiragana' },
   { char: 'う', romaji: 'u', type: 'hiragana' }, { char: 'え', romaji: 'e', type: 'hiragana' },
   { char: 'お', romaji: 'o', type: 'hiragana' }, { char: 'か', romaji: 'ka', type: 'hiragana' },
@@ -31,7 +32,38 @@ export const kanaData: Kana[] = [
   { char: 'ろ', romaji: 'ro', type: 'hiragana' }, { char: 'わ', romaji: 'wa', type: 'hiragana' },
   { char: 'を', romaji: 'wo', type: 'hiragana' }, { char: 'ん', romaji: 'n', type: 'hiragana' },
 
-  // KATAKANA SEION
+  // Voiced (Dakuon) 
+  { char: 'が', romaji: 'ga', type: 'hiragana' }, { char: 'ぎ', romaji: 'gi', type: 'hiragana' },
+  { char: 'ぐ', romaji: 'gu', type: 'hiragana' }, { char: 'げ', romaji: 'ge', type: 'hiragana' },
+  { char: 'ご', romaji: 'go', type: 'hiragana' }, { char: 'ざ', romaji: 'za', type: 'hiragana' },
+  { char: 'じ', romaji: 'ji', type: 'hiragana' }, { char: 'ず', romaji: 'zu', type: 'hiragana' },
+  { char: 'ぜ', romaji: 'ze', type: 'hiragana' }, { char: 'ぞ', romaji: 'zo', type: 'hiragana' },
+  { char: 'だ', romaji: 'da', type: 'hiragana' }, { char: 'ぢ', romaji: 'ji', type: 'hiragana' },
+  { char: 'づ', romaji: 'zu', type: 'hiragana' }, { char: 'で', romaji: 'de', type: 'hiragana' },
+  { char: 'ど', romaji: 'do', type: 'hiragana' }, { char: 'ば', romaji: 'ba', type: 'hiragana' },
+  { char: 'び', romaji: 'bi', type: 'hiragana' }, { char: 'ぶ', romaji: 'bu', type: 'hiragana' },
+  { char: 'べ', romaji: 'be', type: 'hiragana' }, { char: 'ぼ', romaji: 'bo', type: 'hiragana' },
+
+  // P-Sounds (Handakuon) 
+  { char: 'ぱ', romaji: 'pa', type: 'hiragana' }, { char: 'ぴ', romaji: 'pi', type: 'hiragana' },
+  { char: 'ぷ', romaji: 'pu', type: 'hiragana' }, { char: 'ぺ', romaji: 'pe', type: 'hiragana' },
+  { char: 'ぽ', romaji: 'po', type: 'hiragana' },
+
+  // Yoon (Contracted Syllables) 
+  { char: 'きゃ', romaji: 'kya', type: 'hiragana' }, { char: 'きゅ', romaji: 'kyu', type: 'hiragana' }, { char: 'きょ', romaji: 'kyo', type: 'hiragana' },
+  { char: 'しゃ', romaji: 'sha', type: 'hiragana' }, { char: 'しゅ', romaji: 'shu', type: 'hiragana' }, { char: 'しょ', romaji: 'sho', type: 'hiragana' },
+  { char: 'ちゃ', romaji: 'cha', type: 'hiragana' }, { char: 'ちゅ', romaji: 'chu', type: 'hiragana' }, { char: 'ちょ', romaji: 'cho', type: 'hiragana' },
+  { char: 'にゃ', romaji: 'nya', type: 'hiragana' }, { char: 'にゅ', romaji: 'nyu', type: 'hiragana' }, { char: 'にょ', romaji: 'nyo', type: 'hiragana' },
+  { char: 'ひゃ', romaji: 'hya', type: 'hiragana' }, { char: 'ひゅ', romaji: 'hyu', type: 'hiragana' }, { char: 'ひょ', romaji: 'hyo', type: 'hiragana' },
+  { char: 'みゃ', romaji: 'mya', type: 'hiragana' }, { char: 'みゅ', romaji: 'myu', type: 'hiragana' }, { char: 'みょ', romaji: 'myo', type: 'hiragana' },
+  { char: 'りゃ', romaji: 'rya', type: 'hiragana' }, { char: 'りゅ', romaji: 'ryu', type: 'hiragana' }, { char: 'りょ', romaji: 'ryo', type: 'hiragana' },
+  { char: 'ぎゃ', romaji: 'gya', type: 'hiragana' }, { char: 'ぎゅ', romaji: 'gyu', type: 'hiragana' }, { char: 'ぎょ', romaji: 'gyo', type: 'hiragana' },
+  { char: 'じゃ', romaji: 'ja', type: 'hiragana' }, { char: 'じゅ', romaji: 'ju', type: 'hiragana' }, { char: 'じょ', romaji: 'jo', type: 'hiragana' },
+  { char: 'びゃ', romaji: 'bya', type: 'hiragana' }, { char: 'びゅ', romaji: 'byu', type: 'hiragana' }, { char: 'びょ', romaji: 'byo', type: 'hiragana' },
+  { char: 'ぴゃ', romaji: 'pya', type: 'hiragana' }, { char: 'ぴゅ', romaji: 'pyu', type: 'hiragana' }, { char: 'ぴょ', romaji: 'pyo', type: 'hiragana' },
+
+  // --- KATAKANA ---
+  // Basic (Seion) 
   { char: 'ア', romaji: 'a', type: 'katakana' }, { char: 'イ', romaji: 'i', type: 'katakana' },
   { char: 'ウ', romaji: 'u', type: 'katakana' }, { char: 'エ', romaji: 'e', type: 'katakana' },
   { char: 'オ', romaji: 'o', type: 'katakana' }, { char: 'カ', romaji: 'ka', type: 'katakana' },
@@ -55,4 +87,34 @@ export const kanaData: Kana[] = [
   { char: 'ル', romaji: 'ru', type: 'katakana' }, { char: 'レ', romaji: 're', type: 'katakana' },
   { char: 'ロ', romaji: 'ro', type: 'katakana' }, { char: 'ワ', romaji: 'wa', type: 'katakana' },
   { char: 'ヲ', romaji: 'wo', type: 'katakana' }, { char: 'ン', romaji: 'n', type: 'katakana' },
+
+  // Voiced (Dakuon) 
+  { char: 'ガ', romaji: 'ga', type: 'katakana' }, { char: 'ギ', romaji: 'gi', type: 'katakana' },
+  { char: 'グ', romaji: 'gu', type: 'katakana' }, { char: 'ゲ', romaji: 'ge', type: 'katakana' },
+  { char: 'ゴ', romaji: 'go', type: 'katakana' }, { char: 'ザ', romaji: 'za', type: 'katakana' },
+  { char: 'ジ', romaji: 'ji', type: 'katakana' }, { char: 'ズ', romaji: 'zu', type: 'katakana' },
+  { char: 'ゼ', romaji: 'ze', type: 'katakana' }, { char: 'ゾ', romaji: 'zo', type: 'katakana' },
+  { char: 'ダ', romaji: 'da', type: 'katakana' }, { char: 'ヂ', romaji: 'ji', type: 'katakana' },
+  { char: 'ヅ', romaji: 'zu', type: 'katakana' }, { char: 'デ', romaji: 'de', type: 'katakana' },
+  { char: 'ド', romaji: 'do', type: 'katakana' }, { char: 'バ', romaji: 'ba', type: 'katakana' },
+  { char: 'ビ', romaji: 'bi', type: 'katakana' }, { char: 'ブ', romaji: 'bu', type: 'katakana' },
+  { char: 'ベ', romaji: 'be', type: 'katakana' }, { char: 'ボ', romaji: 'bo', type: 'katakana' },
+
+  // P-Sounds (Handakuon) 
+  { char: 'パ', romaji: 'pa', type: 'katakana' }, { char: 'ピ', romaji: 'pi', type: 'katakana' },
+  { char: 'プ', romaji: 'pu', type: 'katakana' }, { char: 'ペ', romaji: 'pe', type: 'katakana' },
+  { char: 'ポ', romaji: 'po', type: 'katakana' },
+
+  // Yoon (Contracted Sounds) 
+  { char: 'キャ', romaji: 'kya', type: 'katakana' }, { char: 'キュ', romaji: 'kyu', type: 'katakana' }, { char: 'キョ', romaji: 'kyo', type: 'katakana' },
+  { char: 'シャ', romaji: 'sha', type: 'katakana' }, { char: 'シュ', romaji: 'shu', type: 'katakana' }, { char: 'ショ', romaji: 'sho', type: 'katakana' },
+  { char: 'チャ', romaji: 'cha', type: 'katakana' }, { char: 'チュ', romaji: 'chu', type: 'katakana' }, { char: 'チョ', romaji: 'cho', type: 'katakana' },
+  { char: 'ニャ', romaji: 'nya', type: 'katakana' }, { char: 'ニュ', romaji: 'nyu', type: 'katakana' }, { char: 'ニョ', romaji: 'nyo', type: 'katakana' },
+  { char: 'ヒャ', romaji: 'hya', type: 'katakana' }, { char: 'ヒュ', romaji: 'hyu', type: 'katakana' }, { char: 'ヒョ', romaji: 'hyo', type: 'katakana' },
+  { char: 'ミャ', romaji: 'mya', type: 'katakana' }, { char: 'ミュ', romaji: 'myu', type: 'katakana' }, { char: 'ミョ', romaji: 'myo', type: 'katakana' },
+  { char: 'リャ', romaji: 'rya', type: 'katakana' }, { char: 'リュ', romaji: 'ryu', type: 'katakana' }, { char: 'リョ', romaji: 'ryo', type: 'katakana' },
+  { char: 'ギャ', romaji: 'gya', type: 'katakana' }, { char: 'ギュ', romaji: 'gyu', type: 'katakana' }, { char: 'ギョ', romaji: 'gyo', type: 'katakana' },
+  { char: 'ジャ', romaji: 'ja', type: 'katakana' }, { char: 'ジュ', romaji: 'ju', type: 'katakana' }, { char: 'ジョ', romaji: 'jo', type: 'katakana' },
+  { char: 'ビャ', romaji: 'bya', type: 'katakana' }, { char: 'ビュ', romaji: 'byu', type: 'katakana' }, { char: 'ビョ', romaji: 'byo', type: 'katakana' },
+  { char: 'ピャ', romaji: 'pya', type: 'katakana' }, { char: 'ピュ', romaji: 'pyu', type: 'katakana' }, { char: 'ピョ', romaji: 'pyo', type: 'katakana' },
 ];
