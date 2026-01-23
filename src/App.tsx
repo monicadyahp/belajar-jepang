@@ -39,6 +39,7 @@ function App() {
       correctValue = 'romaji' in correct ? (correct as any).romaji : (correct as Kanji).onyomi;
     }
 
+    // Algoritma pengambil jawaban salah yang lebih cepat untuk data 700+
     const wrongOptions: string[] = [];
     while (wrongOptions.length < 2) {
       const randomItem = data[Math.floor(Math.random() * data.length)];
@@ -156,6 +157,9 @@ function App() {
           <button onClick={() => setView('mainMenu')} style={styles.backBtn}>← Menu Utama</button>
           <h2 style={styles.title}>{selectedCategory}</h2>
           <div style={styles.menuGrid}>
+            {selectedCategory === 'hiragana' && (
+              <button style={{...styles.subBtn, backgroundColor: '#c8e6c9'}} onClick={() => setView('kotobaMenu')}>📦 Menu Kotoba (Kosakata)</button>
+            )}
             <button style={styles.subBtn} onClick={() => setView('tableView')}>📊 Lihat Tabel Lengkap</button>
             <button style={styles.subBtn} onClick={() => { setView('flashcard'); generateQuestion('flashcard'); }}>📖 Belajar</button>
             <button style={styles.subBtn} onClick={() => { setView('quizSelect'); generateQuestion('quizSelect'); }}>✍️ Pilihan Ganda</button>

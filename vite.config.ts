@@ -29,4 +29,7 @@ export default defineConfig({
       }
     })
   ],
+  build: {
+    sourcemap: false, // <--- Tambahkan baris ini
+  },
 })
