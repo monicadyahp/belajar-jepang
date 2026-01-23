@@ -39,14 +39,20 @@ function App() {
       correctValue = 'romaji' in correct ? (correct as any).romaji : (correct as Kanji).onyomi;
     }
 
-    const wrongOptions = data
-      .filter(item => {
-        const val = 'romaji' in item ? (item as any).romaji : (mode === 'quizMeaning' ? (item as any).meaning : (item as any).onyomi);
-        return val !== correctValue;
-      })
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 2)
-      .map(item => 'romaji' in item ? (item as any).romaji : (mode === 'quizMeaning' ? (item as any).meaning : (item as any).onyomi));
+    const wrongOptions: string[] = [];
+    while (wrongOptions.length < 2) {
+      const randomItem = data[Math.floor(Math.random() * data.length)];
+      let val = '';
+      if (mode === 'quizMeaning' && 'meaning' in randomItem) {
+        val = randomItem.meaning;
+      } else {
+        val = 'romaji' in randomItem ? (randomItem as any).romaji : (randomItem as Kanji).onyomi;
+      }
+
+      if (val !== correctValue && !wrongOptions.includes(val)) {
+        wrongOptions.push(val);
+      }
+    }
 
     setOptions([correctValue, ...wrongOptions].sort(() => 0.5 - Math.random()));
   };
@@ -61,8 +67,8 @@ function App() {
 
     if (choice.toLowerCase().trim() === correctValue.toLowerCase().trim()) {
       setIsCorrect(true);
-      // Menambahkan arti indonesia ke feedback jika ada
-      const arti = 'meaning' in currentItem ? ` (${currentItem.meaning})` : '';
+      const showMeaning = selectedCategory === 'kanji' || selectedCategory === 'kotoba';
+      const arti = showMeaning && 'meaning' in currentItem ? ` (${currentItem.meaning})` : '';
       setFeedback(`✅ Benar!${arti}`);
       setTimeout(() => generateQuestion(view), 1200);
     } else {
@@ -120,11 +126,11 @@ function App() {
 
   const kanjiGroups = [
     { title: 'Angka', list: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '百', '千', '万'] },
-    { title: 'Waktu & Hari', list: ['日', '月', '火', '水', '木', '金', '土', '年', '時', '分', '间', '週', '今', '先', '前', '後', '午', '半'] },
+    { title: 'Waktu & Hari', list: ['日', '月', '火', '水', '木', '金', '土', '年', '時', '分', '間', '週', '今', '先', '前', '後', '午', '半'] },
     { title: 'Alam', list: ['天', '気', '雨', '空', '山', '川', '花', '木', '魚'] },
     { title: 'Arah', list: ['北', '東', '西', '南', '左', '右', '上', '下', '中', '外'] },
     { title: 'Manusia', list: ['人', '男', '女', '子', '父', '母', '友', '名', '目', '口', '耳', '手', '足'] },
-    { title: 'Sekolah & Kerja', list: ['学', '校', '生', '会', '社', '店', '駅', '电', '车', '道', '书', '闻', '读', '语', '言'] },
+    { title: 'Sekolah & Kerja', list: ['学', '校', '生', '会', '社', '店', '駅', '電', '車', '道', '書', '聞', '読', '語', '言'] },
   ];
 
   if (view === 'mainMenu') {
@@ -136,6 +142,7 @@ function App() {
             <button style={styles.menuBtn} onClick={() => { setSelectedCategory('hiragana'); setView('subMenu'); }}>あ Hiragana</button>
             <button style={styles.menuBtn} onClick={() => { setSelectedCategory('katakana'); setView('subMenu'); }}>ア Katakana</button>
             <button style={{...styles.menuBtn, backgroundColor: '#ffcc80'}} onClick={() => { setSelectedCategory('kanji'); setView('kanjiLevels'); }}>漢 Kanji</button>
+            <button style={{...styles.menuBtn, backgroundColor: '#c8e6c9', color: '#2e7d32'}} onClick={() => { setSelectedCategory('kotoba'); setView('kotobaMenu'); }}>📦 Kotoba N5</button>
           </div>
         </div>
       </div>
@@ -149,9 +156,6 @@ function App() {
           <button onClick={() => setView('mainMenu')} style={styles.backBtn}>← Menu Utama</button>
           <h2 style={styles.title}>{selectedCategory}</h2>
           <div style={styles.menuGrid}>
-            {selectedCategory === 'hiragana' && (
-              <button style={{...styles.subBtn, backgroundColor: '#c8e6c9'}} onClick={() => setView('kotobaMenu')}>📦 Menu Kotoba (Kosakata)</button>
-            )}
             <button style={styles.subBtn} onClick={() => setView('tableView')}>📊 Lihat Tabel Lengkap</button>
             <button style={styles.subBtn} onClick={() => { setView('flashcard'); generateQuestion('flashcard'); }}>📖 Belajar</button>
             <button style={styles.subBtn} onClick={() => { setView('quizSelect'); generateQuestion('quizSelect'); }}>✍️ Pilihan Ganda</button>
@@ -166,7 +170,7 @@ function App() {
     return (
       <div style={styles.container}>
         <div style={styles.card}>
-          <button onClick={() => setView('subMenu')} style={styles.backBtn}>← Kembali</button>
+          <button onClick={() => setView('mainMenu')} style={styles.backBtn}>← Menu Utama</button>
           <h2 style={styles.title}>Kotoba N5</h2>
           <div style={styles.menuGrid}>
             <button style={styles.subBtn} onClick={() => { setSelectedCategory('kotoba'); setView('flashcard'); generateQuestion('flashcard'); }}>📖 Belajar Kosakata</button>
@@ -276,7 +280,11 @@ function App() {
           else if(selectedCategory === 'kanji') setView('kanjiSubMenu');
           else setView('subMenu');
         }} style={styles.backBtn}>← Kembali</button>
-        <div style={styles.kanaDisplay}>{currentItem.char}</div>
+        <div style={styles.kanaDisplay}>
+          {selectedCategory === 'kotoba' && (view === 'quizSelect' || view === 'quizInput' || view === 'quizMeaning')
+            ? currentItem.char.split('(')[1]?.replace(')', '') || currentItem.char 
+            : currentItem.char}
+        </div>
         <div style={styles.contentArea}>
           {view === 'flashcard' && (
             <>
@@ -310,7 +318,7 @@ function App() {
           )}
           {view === 'quizInput' && (
             <form onSubmit={(e) => { e.preventDefault(); checkAnswer(inputAnswer); }}>
-              <input style={styles.inputField} type="text" value={inputAnswer} placeholder="Ketik romaji..." onChange={(e) => setInputAnswer(e.target.value)} autoFocus />
+              <input style={styles.inputField} type="text" value={inputAnswer} placeholder="Ketik jawaban..." onChange={(e) => setInputAnswer(e.target.value)} autoFocus />
               <button type="submit" style={{...styles.button, marginTop: '10px'}}>Cek</button>
               <p style={{color: isCorrect ? '#81c784' : '#e57373', fontWeight: 'bold', marginTop: '10px'}}>{feedback}</p>
             </form>
@@ -329,7 +337,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   menuBtn: { padding: '20px', borderRadius: '15px', border: 'none', backgroundColor: '#5da9e9', color: 'white', fontWeight: 'bold', cursor: 'pointer', fontSize: '18px' },
   subBtn: { padding: '16px', borderRadius: '15px', border: 'none', backgroundColor: '#e1effe', color: '#3b82f6', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px', textAlign: 'left' },
   backBtn: { background: 'none', border: 'none', color: '#999', cursor: 'pointer', fontSize: '14px', fontWeight: 'bold', alignSelf: 'flex-start' },
-  kanaDisplay: { fontSize: '80px', margin: '10px 0', fontWeight: 'bold', color: '#333' },
+  kanaDisplay: { fontSize: '48px', margin: '20px 0', fontWeight: 'bold', color: '#333', minHeight: '60px' },
   kanjiInfoBox: { fontSize: '13px', textAlign: 'left', width: '100%', backgroundColor: '#f9f9f9', padding: '10px', borderRadius: '8px', marginBottom: '10px', marginTop: '10px', lineHeight: '1.5' },
   contentArea: { width: '100%', minHeight: '150px', display: 'flex', flexDirection: 'column', alignItems: 'center' },
   romajiText: { color: '#5da9e9', fontSize: '28px', margin: '10px 0' },
