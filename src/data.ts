@@ -14,6 +14,13 @@ export interface Kanji {
   level: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
 }
 
+export interface Kotoba {
+  char: string; // Dalam Hiragana
+  romaji: string;
+  meaning: string; // Arti Indonesia
+  type: 'benda' | 'kerja' | 'sifat' | 'keterangan' | 'tanya' | 'percakapan' | 'seru' | 'penghubung';
+}
+
 export const kanaData: Kana[] = [
   // --- HIRAGANA ---
   // Basic (Seion) 
@@ -232,4 +239,69 @@ export const kanjiData: Kanji[] = [
   { char: '国', onyomi: 'KOKU', kunyomi: 'kuni', meaning: 'country', level: 'N5', type: 'kanji' },
   { char: '社', onyomi: 'SHA', kunyomi: 'yashiro', meaning: 'company, shrine', level: 'N5', type: 'kanji' },
   { char: '校', onyomi: 'KŌ', kunyomi: '-', meaning: 'school', level: 'N5', type: 'kanji' },
+];
+
+export const kotobaData: Kotoba[] = [
+  // --- PERCAKAPAN DASAR ---
+  { char: 'こんにちは', romaji: 'konnichiwa', meaning: 'Halo / Selamat Siang', type: 'percakapan' },
+  { char: 'ありがとう', romaji: 'arigatou', meaning: 'Terima Kasih', type: 'percakapan' },
+  { char: 'すみません', romaji: 'sumimasen', meaning: 'Maaf / Permisi', type: 'percakapan' },
+  { char: 'おはよう', romaji: 'ohayou', meaning: 'Selamat Pagi', type: 'percakapan' },
+  { char: 'こんばんは', romaji: 'konbanwa', meaning: 'Selamat Malam', type: 'percakapan' },
+  { char: 'さようなら', romaji: 'sayounara', meaning: 'Selamat Tinggal', type: 'percakapan' },
+  { char: 'はい', romaji: 'hai', meaning: 'Ya', type: 'percakapan' },
+  { char: 'いいえ', romaji: 'iie', meaning: 'Tidak', type: 'percakapan' },
+
+  // --- KATA BENDA (N5) ---
+  { char: 'わたし', romaji: 'watashi', meaning: 'Saya', type: 'benda' },
+  { char: 'ともだち', romaji: 'tomodachi', meaning: 'Teman', type: 'benda' },
+  { char: 'せんせい', romaji: 'sensei', meaning: 'Guru', type: 'benda' },
+  { char: 'がくせい', romaji: 'gakusei', meaning: 'Siswa / Mahasiswa', type: 'benda' },
+  { char: 'がっこう', romaji: 'gakkou', meaning: 'Sekolah', type: 'benda' },
+  { char: 'にほん', romaji: 'nihon', meaning: 'Jepang', type: 'benda' },
+  { char: 'ほん', romaji: 'hon', meaning: 'Buku', type: 'benda' },
+  { char: 'くるま', romaji: 'kuruma', meaning: 'Mobil', type: 'benda' },
+  { char: 'みず', romaji: 'mizu', meaning: 'Air', type: 'benda' },
+  { char: 'ごはん', romaji: 'gohan', meaning: 'Nasi / Makan', type: 'benda' },
+  { char: 'おうち', romaji: 'ouchi', meaning: 'Rumah', type: 'benda' },
+  { char: 'ねこ', romaji: 'neko', meaning: 'Kucing', type: 'benda' },
+  { char: 'いぬ', romaji: 'inu', meaning: 'Anjing', type: 'benda' },
+  { char: 'かさ', romaji: 'kasa', meaning: 'Payung', type: 'benda' },
+
+  // --- KATA KERJA (N5) ---
+  { char: 'たべます', romaji: 'tabemasu', meaning: 'Makan', type: 'kerja' },
+  { char: 'のみます', romaji: 'nomimasu', meaning: 'Minum', type: 'kerja' },
+  { char: 'いきます', romaji: 'ikimasu', meaning: 'Pergi', type: 'kerja' },
+  { char: 'きます', romaji: 'kimasu', meaning: 'Datang', type: 'kerja' },
+  { char: 'かえります', romaji: 'kaerimasu', meaning: 'Pulang', type: 'kerja' },
+  { char: 'みます', romaji: 'mimasu', meaning: 'Melihat', type: 'kerja' },
+  { char: 'ききます', romaji: 'kikimasu', meaning: 'Mendengar', type: 'kerja' },
+  { char: 'よみます', romaji: 'yomimasu', meaning: 'Membaca', type: 'kerja' },
+  { char: 'かきます', romaji: 'kakimasu', meaning: 'Menulis', type: 'kerja' },
+  { char: 'します', romaji: 'shimasu', meaning: 'Melakukan', type: 'kerja' },
+
+  // --- KATA SIFAT (N5) ---
+  { char: 'いい', romaji: 'ii', meaning: 'Bagus / Baik', type: 'sifat' },
+  { char: 'わるい', romaji: 'warui', meaning: 'Buruk / Jelek', type: 'sifat' },
+  { char: 'たかい', romaji: 'takai', meaning: 'Tinggi / Mahal', type: 'sifat' },
+  { char: 'やすい', romaji: 'yasui', meaning: 'Murah', type: 'sifat' },
+  { char: 'おいしい', romaji: 'oishii', meaning: 'Enak (Makanan)', type: 'sifat' },
+  { char: 'おおきい', romaji: 'ookii', meaning: 'Besar', type: 'sifat' },
+  { char: 'ちいさい', romaji: 'chiisai', meaning: 'Kecil', type: 'sifat' },
+  { char: 'あつい', romaji: 'atsui', meaning: 'Panas', type: 'sifat' },
+  { char: 'さむい', romaji: 'samui', meaning: 'Dingin (Cuaca)', type: 'sifat' },
+
+  // --- KATA TANYA ---
+  { char: 'なに', romaji: 'nani', meaning: 'Apa', type: 'tanya' },
+  { char: 'どこ', romaji: 'doko', meaning: 'Dimana', type: 'tanya' },
+  { char: 'だれ', romaji: 'dare', meaning: 'Siapa', type: 'tanya' },
+  { char: 'いつ', romaji: 'itsu', meaning: 'Kapan', type: 'tanya' },
+  { char: 'どうして', romaji: 'doushite', meaning: 'Kenapa', type: 'tanya' },
+
+  // --- KATA KETERANGAN & PENGHUBUNG ---
+  { char: 'とても', romaji: 'totemo', meaning: 'Sangat', type: 'keterangan' },
+  { char: 'ちょっと', romaji: 'chotto', meaning: 'Sedikit / Sebentar', type: 'keterangan' },
+  { char: 'そして', romaji: 'soshite', meaning: 'Lalu / Dan', type: 'penghubung' },
+  { char: 'だから', romaji: 'dakara', meaning: 'Karena itu', type: 'penghubung' },
+  { char: 'わあ', romaji: 'waa', meaning: 'Wah! (Kagum)', type: 'seru' },
 ];
